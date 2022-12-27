@@ -1,9 +1,12 @@
-<h1>hello rakesh how are you</h> <br>
-hai janu <br>
-i am a good persion <br>
-this web server create by rakesh chauhan <br>
-i you rekha jaan<br>
-mai aap se bahot pyaar karata hu babu sona rani jaan janu beta i love you babu<br>
-mai aap ke bina nahi reh sakata meri jaan rani sona beta babu i love<br>
-rakesh chauhan
-i am rakesh chauhan
+FROM centos:latest
+MAINTAINER sanjay.dahiya332@gmail.com
+RUN yum install -y httpd \
+  zip \
+ unzip 
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page258/beauty.zip /var/www/html/
+WORKDIR /var/www/html
+RUN unzip beauty.zip
+RUN cp -rvf templatemo_519_beauty/* .
+RUN rm -rf templatemo_519_beauty beauty.zip 
+CMD ["/usr/sbin/httpd", "-D",  "FOREGROUND"]
+EXPOSE 80
